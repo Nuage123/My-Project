@@ -1,0 +1,113 @@
+@startuml
+class Git {
+~ {static} String Property
++ {static} void main(String[])
+~ {static} void help()
+~ {static} void init()
+~ {static} void add(File)
+~ {static} void commit(String)
+~ {static} void rmCached(String)
+~ {static} void rm(String)
+~ {static} void log()
+~ {static} void reset(String)
+~ {static} HashMap<String,Blob> reset(String,String)
+~ {static} void push()
+~ {static} void pull()
+}
+
+
+interface Files {
+~ {static} String shaEncode(String)
+~ {static} void objectOutputStream(Object,File)
+~ {static} void fileWriter(String,File)
+~ {static} String readFile(File)
++ {static} void deleteDirectory(File)
+}
+
+Files <|.. Git
+
+class Blob {
+~ String type
+~ String content
+~ int len
+~ String hash
+~ String name
+~ File file
+~ void createBlobFile()
+}
+
+
+java.io.Serializable <|.. Blob
+Files <|.. Blob
+class Commit {
+~ String type
+~ String commitID
+~ String committer
+~ String lastID
+~ String message
+~ Tree tree
+~ File file
+~ void createCommitFile()
+- void printChange()
+~ String getTime()
+}
+
+
+Serializable <|.. Commit
+Files <|.. Commit
+
+class RemoteGit {
+~ {static} int port
+~ {static} ServerSocket server
+~ {static} Socket socket
+~ {static} String pathname
+~ {static} InputStream in
+~ {static} DataInputStream dis
++ {static} void main(String[])
+~ {static} void connect()
+~ {static} void start()
+~ {static} void close()
++ void run()
+}
+class Tree {
+~ String type
+~ String content
+~ HashMap<String,Blob> treeMap
+~ int len
+~ String hash
+~ File file
+~ void createTreeFile()
+}
+
+
+Serializable <|.. Tree
+Files <|.. Tree
+class ZipUtil {
+- {static} int BUFFER_SIZE
++ {static} void toZip(String,OutputStream,boolean)
+- {static} void compress(File,ZipOutputStream,String,boolean)
++ {static} void compressDirectory(String,String)
++ {static} void unzip(String,String)
+- {static} void mkdir(File)
+}
+interface Transmission {
++{static} void push(String path,Socket socket) throws Error, IOException
++{static} void pull(String path,Socket socket) throws Error, IOException
++{static} void sendFile(File file, Socket client)
++{static} void receiveFile(String path, Socket socket)
++{static} String getFormatFileSize(long length)
+}
+class Client {
++ {static} int port
++ {static} String host
++ {static} Socket socket
+~ void push()
+~ void pull()
++ {static} void createSocket()
++ void close()
+}
+
+Transmission <|.. Client
+Transmission <|.. RemoteGit
+@enduml
+

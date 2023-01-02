@@ -1,0 +1,15 @@
+---------Welcome to My Git。请按照下列提示进行操作--------------------------------------------------------
+
+Git init	        	  初始化Git（请在进行其他操作前确认已进行初始化）
+Git add [file]	        在index对象中添加/修改/删除(请输入输入文档路径并确认路径正确）
+Git add .               对工作区的全部文件进行一次add操作。输入add . 时，将只存在于暂存区中，而不存在于工作区的文件记录，从index中删除
+Git commit  	        将index中所有条目生成tree对象序列化到objects文件夹下
+Git rm [file]	        在index对象中删除对应条目，在工作区中删除该文件(请输入输入文档路径并确认路径正确）
+Git rm --cached [file]  仅删除index中对应条目(请输入输入文档路径并确认路径正确）
+Git log                 打印前次的commit信息,直到打印完第一次commit的内容。
+Git reset [commit ID]   默认为mixed模式（见reset--mixed)  （请输入commit ID并确认该commit文件存在）
+Git reset --soft：      修改HEAD文件内容为给定commit id，（请输入commit ID并确认该commit文件存在）
+Git reset --mixed：     在soft模式的基础上，重置暂存区到对应commit，（请输入commit ID并确认该commit文件存在）
+Git reset --hard：      在mixed模式的基础上，重置工作区与暂存区内容一致。（请输入commit ID并确认该commit文件存在）
+Git pull/push	       上传本地仓库内容到远程仓库、从远程仓库取回内容
+------------------------------------------------------------------------------------------------------
